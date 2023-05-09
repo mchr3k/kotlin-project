@@ -1,4 +1,3 @@
-import com.android.build.gradle.LibraryExtension
 import org.gradle.api.tasks.bundling.Jar
 
 /**
@@ -49,18 +48,14 @@ publishing {
     publications {
         create<MavenPublication>("release") {
             afterEvaluate {
-                if (plugins.hasPlugin("com.android.library")) {
-                    from(components["release"])
-                } else {
-                    from(components["java"])
-                }
+                from(components["java"])
             }
 
             pom {
                 if (!"USE_SNAPSHOT".byProperty.isNullOrBlank()) {
                     version = "$version-SNAPSHOT"
                 }
-                description.set("A template for Kotlin Android projects")
+                description.set("A template for Kotlin projects")
                 url.set("https://github.com/mchr3k/kotlinproject/")
 
                 licenses {
