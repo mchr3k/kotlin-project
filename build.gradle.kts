@@ -4,11 +4,16 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.versions)
+    alias(libs.plugins.githooks)
     base
 }
 
 allprojects {
     group = PUBLISHING_GROUP
+}
+
+gitHooks {
+    setHooks(mapOf("pre-commit" to "check"))
 }
 
 subprojects {
